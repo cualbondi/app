@@ -1,103 +1,42 @@
 import React from 'react'
-import { View, StyleSheet, StatusBar, Text } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as actions from './actions'
+import { View, StyleSheet, Text } from 'react-native'
 import { MapView } from 'expo'
 import * as Animatable from 'react-native-animatable'
-import Icon from 'antd-mobile/lib/icon'
-import Button from 'antd-mobile/lib/button'
-import InputItem from '@uikit/input-item'
-import List from 'antd-mobile/lib/list'
+import FloatButton from '@uikit/button/float'
+import Input from '@uikit/input'
 
-export default class MapScene extends React.Component {
+class MapScene extends React.Component {
 
-  state = {
-    focusedInput: null
-  }
-
-  constructor(props) {
-    super(props);
-    this.onTouchCoordinateInMap = this.handleOnTouchCoordinateInMap.bind(this);
-    this.onFocusInput = this.handleFocusInput.bind(this);
-    this.onBlurInput = this.handleBlurInput.bind(this);
-  }
-
-  handleOnTouchCoordinateInMap(e) {
-    const { coordinate, position } = e.nativeEvent;
-  }
-
-  handleFocusInput(e) {
-    this.setState({ focusedInput: true });
-  }
-
-  handleBlurInput(e) {
-    this.setState({ focusedInput: false });
+  static defaultProps = {
+    initialRegion: {
+      latitude: -34.9205,
+      longitude: -57.9536,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421
+    }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
         <MapView
+          ref={ref => { this.map = ref }}
           style={styles.mapContainer}
-          showsUserLocation={true}
           userLocationAnnotationTitle={'Estás Aquí'}
-          followsUserLocation={true}
-          showsMyLocationButton={true}
+          showsUserLocation={true}
+          followsUserLocation={false}
           showsBuildings={false}
           loadingEnabled={true}
-          onPress={this.onTouchCoordinateInMap}
-          initialRegion={{
-            latitude: 34.9205,
-            longitude: -57.9536,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
+          initialRegion={this.props.initialRegion}
         />
-        <View
-          pointerEvents='box-none'
-          style={styles.overlayContainer}
-        >
-          <View style={styles.inputContainer}>
-            <InputItem
-              onFocus={this.onFocusInput}
-              onBlur={this.onBlurInput}
-              placeholder={'Desde'}
-              color={'#fff'}
-              fontWeight={'600'}
-              placeholderTextColor={'#e5e5e5'}
-              style={{
-                backgroundColor: '#6099F3'
-              }}
-            />
-            <InputItem
-              onFocus={this.onFocusInput}
-              onBlur={this.onBlurInput}
-              placeholder={'Hasta'}
-              color={'#fff'}
-              fontWeight={'600'}
-              placeholderTextColor={'#e5e5e5'}
-              style={{
-                marginTop: 10,
-                backgroundColor: '#6099F3'
-              }}
-            />
-          </View>
-          {this.state.focusedInput && (
-            <View
-              style={styles.resultsContainer}
-            >
-              <List renderHeader={() => 'Favoritos'}>
-                <List.Item onClick={e => alert('hola')} arrow={'horizontal'}>
-                  <Text>Mi Ubicación</Text>
-                </List.Item>
-              </List>
-              <List renderHeader={() => 'Resultados de Búsqueda'}>
-                <List.Item>
-                  <Text>Calle 12 #1503</Text>
-                </List.Item>
-              </List>
-            </View>
-          )}
-        </View>
+        <Input
+          placeholder="Buscar Recorrido..."
+          style={styles.inputSearch}
+          onPress={this.props.onSearchPress}
+        />
       </View>
     );
   }
@@ -111,19 +50,15 @@ const styles = StyleSheet.create({
   mapContainer: {
     flex: 1
   },
-  overlayContainer: {
-    ...StyleSheet.absoluteFillObject
-  },
-  inputContainer: {
-    // flex: 1,
-    // maxHeight: 150,
-    backgroundColor: '#4688F1', 
-    paddingTop: 30, 
-    paddingBottom: 10, 
-    paddingHorizontal: 15
-  },
-  resultsContainer: {
-    flex: 1,
-    backgroundColor: '#fff'
+  inputSearch: {
+    ...StyleSheet.absoluteFillObject,
+    top: 30,
+    marginLeft: 15,
+    marginRight: 15,
   }
 });
+
+export default connect(
+  (state) => ({ ...state.map }),
+  (dispatch) => bindActionCreators(actions, dispatch)
+)(MapScene)
