@@ -5,8 +5,7 @@ import { connect } from 'react-redux'
 import * as actions from './actions'
 
 import InputItem from '@uikit/input'
-import List from 'antd-mobile/lib/list'
-import Button from 'antd-mobile/lib/button'
+import { List, Button } from 'antd-mobile-rn'
 
 class TourForm extends React.Component {
   render() {

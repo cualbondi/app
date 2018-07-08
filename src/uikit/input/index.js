@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import * as Animatable from 'react-native-animatable';
-import InputItem from 'antd-mobile/lib/input-item'
+import { InputItem } from 'antd-mobile-rn'
 import { boxShadow } from '../shared'
 
 export default (props) => {
