@@ -1,10 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux'
-import store from '@config/store'
-import App from '@modules/app/component'
+import { store, AppWithNavigationState } from '@config/bootstrap'
 
-export default (props) => (
+export default () => (
   <Provider store={store}>
-    <App />
+    <AppWithNavigationState />
   </Provider>
 )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'antd-mobile-rn'
+import Button from 'antd-mobile-rn/lib/button'
 import { boxShadow } from '../shared'
 
 export default (props) => (
