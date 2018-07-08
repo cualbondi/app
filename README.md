@@ -4,10 +4,10 @@
 
 **Instalar dependencias**
 
-`yarn install`
+`npm i`
 
 **Correr app en development**
 
-`yarn start`, esto levanta el entorno de expo.
+`npm start`, esto levanta el entorno de expo.
 
 Escanear QR con aplicación Expo.

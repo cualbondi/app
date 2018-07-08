@@ -1,3 +1,5 @@
 node_modules/**/*
 .expo/*
 npm-debug.*
+# We do not use yarn. Use npm instead
+yarn.lock
