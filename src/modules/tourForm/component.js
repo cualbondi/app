@@ -2,68 +2,65 @@ import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Transition } from 'react-navigation-fluid-transitions'
 import * as actions from './actions'
 
 import InputItem from '@uikit/input'
 import List from 'antd-mobile-rn/lib/list'
 import Button from 'antd-mobile-rn/lib/button'
 
-class TourForm extends React.Component {
-  render() {
-    return (
-      <View
-        pointerEvents='box-none'
-        style={styles.overlayContainer}
-      >
-        <View style={styles.header}>
-          <View style={styles.actionsContainer}>
-            <Button onClick={this.props.onPressBack} style={{ backgroundColor: 'transparent', borderWidth: 0 }}>
-              <Text style={{ color: '#fff', fontWeight: '600', fontSize: 30, textAlign: 'center' }}>{'<'}</Text>
-            </Button>
-          </View>
-          <View style={styles.inputContainer}>
-            <InputItem
-              focused={true}
-              placeholder={'Desde'}
-              color={'#fff'}
-              fontWeight={'600'}
-              placeholderTextColor={'#e5e5e5'}
-              style={{
-                backgroundColor: '#6099F3',
-                shadowOpacity: 0
-              }}
-            />
-            <InputItem
-              placeholder={'Hasta'}
-              color={'#fff'}
-              fontWeight={'600'}
-              placeholderTextColor={'#e5e5e5'}
-              style={{
-                marginTop: 10,
-                backgroundColor: '#6099F3',
-                shadowOpacity: 0
-              }}
-            />
-          </View>
-        </View>
-        <View
-          style={styles.resultsContainer}
-        >
-          <List renderHeader={() => 'Favoritos'}>
-            <List.Item onClick={e => alert('hola')} arrow={'horizontal'}>
-              <Text>Mi Ubicación</Text>
-            </List.Item>
-          </List>
-          <List renderHeader={() => 'Resultados de Búsqueda'}>
-            <List.Item>
-              <Text>Calle 12 #1503</Text>
-            </List.Item>
-          </List>
-        </View>
+const TourForm = (props) => (
+  <View
+    pointerEvents='box-none'
+    style={styles.overlayContainer}
+  >
+    <View style={styles.header}>
+      <View style={styles.actionsContainer}>
+        <Button onClick={props.onPressBack} style={{ backgroundColor: 'transparent', borderWidth: 0 }}>
+          <Text style={{ color: '#fff', fontWeight: '600', fontSize: 30, textAlign: 'center' }}>{'<'}</Text>
+        </Button>
       </View>
-    );
-  }
-}
+      <View style={styles.inputContainer}>
+        <InputItem
+          focused={true}
+          placeholder={'Desde'}
+          color={'#fff'}
+          fontWeight={'600'}
+          placeholderTextColor={'#e5e5e5'}
+          style={{
+            backgroundColor: '#6099F3',
+            shadowOpacity: 0
+          }}
+        />
+        <InputItem
+          placeholder={'Hasta'}
+          color={'#fff'}
+          fontWeight={'600'}
+          placeholderTextColor={'#e5e5e5'}
+          style={{
+            marginTop: 10,
+            backgroundColor: '#6099F3',
+            shadowOpacity: 0
+          }}
+        />
+      </View>
+    </View>
+    <View
+      style={styles.resultsContainer}
+    >
+      <List renderHeader={() => 'Favoritos'}>
+        <List.Item onClick={e => alert('hola')} arrow={'horizontal'}>
+          <Text>Mi Ubicación</Text>
+        </List.Item>
+      </List>
+      <List renderHeader={() => 'Resultados de Búsqueda'}>
+        <List.Item>
+          <Text>Calle 12 #1503</Text>
+        </List.Item>
+      </List>
+    </View>
+  </View>
+);
 
 const styles = StyleSheet.create({
   overlayContainer: {
