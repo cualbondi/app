@@ -2,22 +2,23 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
-    "start": "exp start"
+    "start": "exp start",
+    "exp": "exp"
   },
   "dependencies": {
     "antd-mobile-rn": "^2.2.0",
-    "expo": "^27.0.1",
+    "expo": "^29.0.0",
     "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
     "react-native-animatable": "^1.2.4",
-    "react-navigation": "^2.6.2",
+    "react-navigation": "^2.9.3",
     "react-navigation-redux-helpers": "^2.0.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0"
   },
   "devDependencies": {
-    "exp": "^55.0.4",
+    "exp": "^57.0.0",
     "redux-devtools-extension": "^2.13.2"
   }
 }

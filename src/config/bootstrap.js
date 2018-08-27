@@ -5,11 +5,12 @@ import createSagaMiddleware from 'redux-saga'
 import reducers from '@modules/reducer'
 import rootSaga from '@modules/saga'
 import AppNavigator from '@navigator'
-import { 
-  createReactNavigationReduxMiddleware, 
-  createNavigationReducer, 
-  reduxifyNavigator 
+import {
+  createReactNavigationReduxMiddleware,
+  createNavigationReducer,
+  reduxifyNavigator
 } from 'react-navigation-redux-helpers'
+
 
 const rootReducer = combineReducers({
   ...reducers,

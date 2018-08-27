@@ -1,10 +1,17 @@
 import { createStackNavigator } from 'react-navigation'
 // Scenes
-import MapScene from '@modules/map/component'
-import TourFormScene from '@modules/tourForm/component'
+import SelectCityScene from '@modules/selectCity/component'
+/* import MapScene from '@modules/map/component'
+import TourFormScene from '@modules/tourForm/component' */
 
 export default createStackNavigator({
-  'map': {
+  'select-city': {
+    screen: SelectCityScene,
+    navigationOptions: {
+      header: null
+    }
+  },
+  /* 'map': {
     screen: MapScene,
     navigationOptions: {
       header: null
@@ -15,5 +22,5 @@ export default createStackNavigator({
     navigationOptions: {
       header: null
     }
-  }
+  } */
 });
