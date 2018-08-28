@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StatusBar, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { List, ListItem } from 'react-native-elements'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -13,13 +14,9 @@ class SelectCity extends React.PureComponent {
             source={require('@assets/app_logo.png')}
             style={styles.image}
           />
-          <View style={styles.listContainer}>
-            {this.props.cities.map((c, i) =>
-              <TouchableOpacity key={i} style={styles.listItem}>
-                <Text style={styles.listItemText}>{c.nombre}</Text>
-              </TouchableOpacity>
-            )}
-          </View>
+          <List style={styles.listContainer}>
+            {this.props.cities.map((c, i) => <ListItem style={styles.listItem} key={i} title={c.nombre} />)}
+          </List>
         </View>
       </View>
     );

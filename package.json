@@ -6,11 +6,11 @@
     "exp": "exp"
   },
   "dependencies": {
-    "antd-mobile-rn": "^2.2.0",
     "expo": "^29.0.0",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
     "react-native-animatable": "^1.2.4",
+    "react-native-elements": "^0.19.1",
     "react-navigation": "^2.9.3",
     "react-navigation-redux-helpers": "^2.0.2",
     "react-redux": "^5.0.7",
