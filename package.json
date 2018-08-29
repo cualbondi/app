@@ -1,8 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "private": true,
   "scripts": {
-    "start": "exp r -c",
+    "start": "exp start -c",
     "exp": "exp"
   },
   "dependencies": {
@@ -12,14 +11,14 @@
     "react-native-animatable": "^1.2.4",
     "react-native-elements": "^0.19.1",
     "react-navigation": "^2.9.3",
+    "react-navigation-fluid-transitions": "^0.2.5",
     "react-navigation-redux-helpers": "^2.0.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0"
   },
   "devDependencies": {
-    "babel-plugin-functional-hmr": "^1.0.24",
     "exp": "^57.0.0",
-    "redux-devtools-extension": "^2.13.2"
+    "redux-devtools-extension": "^2.13.5"
   }
 }

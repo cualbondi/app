@@ -1,23 +1,51 @@
 import React from 'react'
-import { View, StatusBar, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import { List, ListItem } from 'react-native-elements'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import * as actions from './actions'
+import { View, StatusBar, StyleSheet, Image, ScrollView } from 'react-native'
+import { View as AnimatedView } from 'react-native-animatable'
+import { List, ListItem } from 'react-native-elements'
+import { Transition } from 'react-navigation-fluid-transitions'
 
 class SelectCity extends React.PureComponent {
+
+  handleSelectCity(city) {
+    this.props.onSelectedCity(city);
+    this.props.navigation.navigate('home');
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <View style={styles.content}>
+        <AnimatedView animation='slideInDown' style={styles.imageContainer}>
           <Image
             source={require('@assets/app_logo.png')}
             style={styles.image}
+            resizeMode='contain'
           />
-          <List style={styles.listContainer}>
-            {this.props.cities.map((c, i) => <ListItem style={styles.listItem} key={i} title={c.nombre} />)}
+        </AnimatedView>
+        <ScrollView contentContainerStyle={styles.listContainer} bounces={false}>
+          <List containerStyle={{ borderTopWidth: 0, backgroundColor: '#42BFE5' }}>
+            {this.props.cities.map((city, i) =>
+              <AnimatedView
+                key={i}
+                animation='bounceInLeft'
+                delay={i * 100}
+              >
+                <Transition shared={`city_${city.slug}`}>
+                  <ListItem
+                    containerStyle={styles.listItem}
+                    titleStyle={styles.listItemTitle}
+                    chevronColor={'#fff'}
+                    title={city.nombre}
+                    onPress={() => this.handleSelectCity(city)}
+                  />
+                </Transition>
+              </AnimatedView>
+            )}
           </List>
-        </View>
+        </ScrollView>
       </View>
     );
   }
@@ -25,28 +53,30 @@ class SelectCity extends React.PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  },
-  content: {
-    backgroundColor: '#42BFE5',
     flex: 1,
+    backgroundColor: '#42BFE5',
+  },
+  imageContainer: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 20,
+    paddingVertical: 10
   },
   image: {
-    height: 100,
-    width: 100,
+    width: 150,
+    height: 130
   },
   listContainer: {
-    marginTop: 50,
-    flex: 0.75
+    paddingHorizontal: 50
   },
   listItem: {
-    flex: 1,
-    justifyContent: 'space-between'
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    borderBottomColor: '#e9e9e9',
+    backgroundColor: '#42BFE5'
   },
-  listItemText: {
-    color: 'white',
+  listItemTitle: {
+    color: '#fff',
     fontSize: 18
   }
 });
@@ -55,5 +85,5 @@ export default connect(
   (state) => ({
     cities: state.cities.list
   }),
-  (dispatch) => bindActionCreators({}, dispatch)
+  (dispatch) => bindActionCreators(actions, dispatch)
 )(SelectCity)

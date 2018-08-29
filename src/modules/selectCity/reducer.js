@@ -1,4 +1,6 @@
 const initial = {
+  selected: {},
+  hasCitySelected: false,
   list: [
     {
       slug: 'bahia-blanca',
@@ -58,5 +60,18 @@ const initial = {
 }
 
 export default (state = initial, action) => {
-  return state
+  switch (action.type) {
+
+    case 'CITIES_SELECTED':
+    {
+      return {
+        ...state,
+        selected: action.payload,
+        hasCitySelected: true
+      }
+    }
+
+    default:
+      return state;
+  }
 }
