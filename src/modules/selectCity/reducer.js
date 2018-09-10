@@ -56,22 +56,20 @@ const initial = {
       latlng: [-31.64189163095992, -60.70441961288452],
       zoom: 13,
     },
-  ]
-}
+  ],
+};
 
 export default (state = initial, action) => {
   switch (action.type) {
-
-    case 'CITIES_SELECTED':
-    {
+    case 'CITY_SELECTED': {
       return {
         ...state,
         selected: action.payload,
-        hasCitySelected: true
-      }
+        hasCitySelected: true,
+      };
     }
 
     default:
       return state;
   }
-}
+};
